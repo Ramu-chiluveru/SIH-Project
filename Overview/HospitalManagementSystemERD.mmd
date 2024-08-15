@@ -1,0 +1,79 @@
+erDiagram
+    Hospital ||--o{ Doctor : employs
+    Hospital ||--o{ Appointment : hosts
+    Hospital ||--o{ AdmittedPatient : admits
+    Hospital ||--o{ Inventory : manages
+
+    Doctor ||--o{ Appointment : conducts
+
+    Patient ||--o{ Appointment : books
+    Patient ||--o{ AdmittedPatient : becomes
+
+    Appointment ||--o| AdmittedPatient : leads_to
+
+    Hospital {
+        string name
+        string location
+        object contactInformation
+        int totalBeds
+        object currentBeds
+        int queueSize
+        array services
+        int numberOfDoctors
+        array doctorSpecializations
+        int staffCount
+        object operatingHours
+        float hospitalRating
+        boolean emergencyServices
+        object feeStructure
+        array governmentSchemes
+        array insuranceProviders
+    }
+
+    Doctor {
+        string name
+        string specialization
+        int experience
+        string availability
+        object consultationHours
+        object contactInformation
+        float consultationFee
+        string gender
+    }
+
+    Patient {
+        object basicInformation
+        object healthMetrics
+        object bodyMeasurements
+        object bodyMetricsHistory
+        object medicalHistory
+    }
+
+    Appointment {
+        date appointmentDate
+        string appointmentTime
+        string roomType
+        string status
+        string consultationStatus
+        string admissionStatus
+        string notes
+    }
+
+    AdmittedPatient {
+        string roomType
+        date admissionDate
+        date dischargeDate
+        string status
+    }
+
+    Inventory {
+        string name
+        string description
+        int quantity
+        string unit
+        int reorderLevel
+        string category
+        date expiryDate
+        date createdAt
+        date updatedAt
+    }

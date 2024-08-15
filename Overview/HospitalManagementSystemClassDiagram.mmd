@@ -1,0 +1,84 @@
+classDiagram
+    class Hospital {
+        +String name
+        +String location
+        +Object contactInformation
+        +Int totalBeds
+        +Object currentBeds
+        +Int queueSize
+        +Array services
+        +Int numberOfDoctors
+        +Array doctorSpecializations
+        +Boolean emergencyServices
+        +Object feeStructure
+        +updateBedAvailability()
+        +manageInventory()
+        +generateReports()
+    }
+
+    class Doctor {
+        +String name
+        +String specialization
+        +Int experience
+        +String availability
+        +Object consultationHours
+        +Float consultationFee
+        +String gender
+        +updateAvailability()
+        +scheduleAppointment()
+    }
+
+    class Patient {
+        +Object basicInformation
+        +Object healthMetrics
+        +Object bodyMeasurements
+        +Object medicalHistory
+        +calculateBMI()
+        +updateHealthMetrics()
+        +viewAppointments()
+        +bookAppointment()
+    }
+
+    class Appointment {
+        +Date appointmentDate
+        +String appointmentTime
+        +String roomType
+        +String status
+        +String consultationStatus
+        +String admissionStatus
+        +updateStatus()
+        +reschedule()
+        +cancel()
+    }
+
+    class AdmittedPatient {
+        +String roomType
+        +Date admissionDate
+        +Date dischargeDate
+        +String status
+        +admit()
+        +discharge()
+        +transferRoom()
+    }
+
+    class Inventory {
+        +String name
+        +String description
+        +Int quantity
+        +String unit
+        +Int reorderLevel
+        +String category
+        +Date expiryDate
+        +updateStock()
+        +checkReorderLevel()
+        +generateOrderList()
+    }
+
+    Hospital "1" -- "*" Doctor : employs
+    Hospital "1" -- "*" Appointment : hosts
+    Hospital "1" -- "*" AdmittedPatient : admits
+    Hospital "1" -- "*" Inventory : manages
+    Doctor "1" -- "*" Appointment : conducts
+    Patient "1" -- "*" Appointment : books
+    Patient "1" -- "*" AdmittedPatient : becomes
+    Appointment "1" -- "0..1" AdmittedPatient : leads to

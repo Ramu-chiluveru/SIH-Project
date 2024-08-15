@@ -1,0 +1,55 @@
+graph TD
+    subgraph "Hospital Administrator"
+        A[Register Hospital] --> B{Login}
+        B --> C[Dashboard]
+        C --> D[Manage Doctors]
+        C --> E[Manage Beds]
+        C --> F[Manage Inventory]
+        C --> G[Manage Appointments]
+        C --> H[View/Modify Patient Data]
+        
+        D --> D1[Add Doctor]
+        D --> D2[Remove Doctor]
+        D --> D3[Update Doctor Info]
+        
+        E --> E1[Update Bed Availability]
+        E --> E2[Assign Beds]
+        
+        F --> F1[Add Inventory]
+        F --> F2[Update Stock]
+        F --> F3[Set Reorder Levels]
+        
+        G --> G1[View Appointments]
+        G --> G2[Confirm/Cancel Appointments]
+        G --> G3[Update Appointment Status]
+        
+        H --> H1[View Patient Records]
+        H --> H2[Update Medical History]
+        H --> H3[Modify Health Metrics]
+    end
+    
+    subgraph "Patient"
+        P[Register/Login] --> Q[Patient Dashboard]
+        Q --> R[View Hospital Status]
+        Q --> S[Book Appointment]
+        Q --> T[View Own Appointments]
+        Q --> U[View Personal Health Data]
+        
+        R --> R1[Check Bed Availability]
+        R --> R2[View Doctor List]
+        
+        S --> S1[Select Hospital]
+        S1 --> S2[Select Doctor]
+        S2 --> S3[Choose Time Slot]
+        S3 --> S4[Confirm Booking]
+        
+        T --> T1[Check Appointment Status]
+        T --> T2[Cancel Appointment]
+        
+        U --> U1[View Medical History]
+        U --> U2[View Recent Health Metrics]
+    end
+    
+    C -.-> |Affects| R
+    G -.-> |Updates| T
+    H -.-> |Updates| U
